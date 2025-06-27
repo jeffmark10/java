@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:fragment="head_fragment(pageTitle)">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${pageTitle} + ' - Farmácia Dias da Cruz'">Farmácia Dias da Cruz</title>
+    
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/components.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+
+<body> <div th:fragment="header_fragment">
+    <div id="overlay"></div>
+    <div id="loading-spinner"><div class="spinner"></div></div>
+
+    <nav id="sidebar">
+        <div class="sidebar-header">
+            <a href="#" class="sidebar-user-info" sec:authorize="isAuthenticated()">
+                <i class="fas fa-user-circle"></i>
+                <span class="user-greeting">Olá, <span sec:authentication="principal.firstName"></span>!</span>
+            </a>
+            <a href="#" class="sidebar-user-info" sec:authorize="isAnonymous()">
+                 <i class="fas fa-sign-in-alt"></i>
+                 <span class="user-greeting">Bem-vindo! Faça Login</span>
+            </a>
+            <span class="close-sidebar-btn" id="closeSidebarBtn">×</span>
+        </div>
+
+        <ul class="sidebar-links">
+            <li><a th:href="@{/inicio}"><i class="fas fa-home"></i> Início</a></li>
+            <li><a th:href="@{/meu-perfil}"><i class="fas fa-user"></i> Meu Perfil</a></li>
+            <li class="separator"></li>
+            
+            <li class="sidebar-category has-submenu" th:each="category : ${SUBTOPIC_ROUTES_MAP.entrySet()}">
+                <a href="#" class="submenu-toggle">
+                    <span th:text="${category.value.display_name}">Nome Categoria</span> 
+                    <i class="fas fa-chevron-down submenu-arrow"></i>
+                </a>
+                <ul class="submenu">
+                    <li><a th:href="@{/categoria/{catName}(catName=${category.key})}" th:text="'Ver Tudo em ' + ${category.value.display_name}"></a></li>
+                    <li th:each="subtopic : ${category.value.subtopics.entrySet()}">
+                        <a th:href="@{/{cat}/{sub}(cat=${category.key}, sub=${subtopic.key})}" th:text="${subtopic.value}">Nome Subtópico</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="separator"></li>
+            <li><a href="https://wa.me/5521999998888?text=Ol%C3%A1..."><i class="fab fa-whatsapp"></i> Envie sua Receita</a></li>
+            <li><a th:href="@{/sobre}"><i class="fas fa-info-circle"></i> Sobre Nós</a></li>
+            
+            <li sec:authorize="hasRole('ADMIN')">
+                <a th:href="@{/admin/products}" class="admin-link"><i class="fas fa-tools"></i> Gerenciar Produtos</a>
+            </li>
+            
+            <li sec:authorize="isAuthenticated()">
+                <a th:href="@{/logout}"><i class="fas fa-sign-out-alt"></i> Sair</a>
+            </li>
+        </ul>
+    </nav>
+
+    <header class="main-header-new">
+        <div class="main-nav-bar">
+            <div class="container main-nav-content">
+                <a href="#" class="sidebar-toggle-btn" id="openSidebarBtn"><i class="fas fa-bars"></i></a>
+                <a th:href="@{/inicio}" class="logo-new">
+                    <span class="logo-text">Dias da Cruz</span>
+                    <span class="logo-subtitle">Farmácia de Manipulação</span>
+                </a>
+                <div class="user-actions">
+                    <a th:href="@{/view_cart}" class="action-item cart">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span>Meu Carrinho</span>
+                        <span class="cart-count" th:text="${cart_item_count}">0</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+</div>
+
+<footer class="main-footer" th:fragment="footer_fragment">
+    <p th:text="'© ' + ${year} + ' Farmácia de Manipulação Dias da Cruz. Todos os direitos reservados.'"></p>
+    <p>Endereço: Rua da Saúde, 123 - Bairro Bem-Estar, Cidade Nova - UF, CEP: 12345-678</p>
+
+    <script th:src="@{/js/main.js}"></script>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Sobre Nós - Farmácia Dias da Cruz</title>
+    
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/components.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+
+    <div th:replace="~{base :: header_fragment}"></div>
+
+    <main id="main-content">
+        <div class="container">
+            <section class="page-header">
+                <h1>Nossa História e Missão</h1>
+                <p>Há mais de 50 anos, cuidando da sua saúde com excelência e personalização.</p>
+            </section>
+        
+            <section class="content-section">
+                <div class="text-block">
+                    <h2>Quem Somos</h2>
+                    <p>A Farmácia de Manipulação Dias da Cruz nasceu em 1977 da paixão por oferecer soluções de saúde verdadeiramente personalizadas. Desde então, combinamos a tradição da manipulação farmacêutica com a inovação e o rigor científico para criar fórmulas exclusivas que se adaptam perfeitamente às necessidades individuais de cada cliente.</p>
+                    <p>Nossa equipe é formada por farmacêuticos e profissionais altamente qualificados, dedicados a garantir a máxima qualidade, segurança e eficácia em todos os produtos manipulados. Investimos constantemente em tecnologia, pesquisa e desenvolvimento para proporcionar os melhores resultados.</p>
+                    <p>Acreditamos que cada pessoa é única, e por isso, seu tratamento e cuidado também devem ser. Estamos comprometidos em ser o seu parceiro de confiança na jornada por uma vida mais saudável e equilibrada.</p>
+                </div>
+                <div class="text-block">
+                    <h2>Nossa Missão</h2>
+                    <p>Proporcionar saúde e bem-estar através da manipulação farmacêutica de alta qualidade, oferecendo soluções personalizadas com ética, responsabilidade, inovação e excelência no atendimento, sempre focados nas necessidades e no bem-estar integral de nossos clientes.</p>
+                </div>
+                <div class="text-block">
+                    <h2>Nossos Valores</h2>
+                    <ul>
+                        <li><strong>Excelência:</strong> Busca contínua pela qualidade, segurança e eficácia em todos os processos e produtos.</li>
+                        <li><strong>Personalização:</strong> Foco nas necessidades individuais, garantindo soluções sob medida para cada cliente.</li>
+                        <li><strong>Ética e Transparência:</strong> Atuação pautada pela honestidade, responsabilidade e respeito.</li>
+                        <li><strong>Inovação:</strong> Constante aprimoramento e adoção de novas tecnologias e conhecimentos científicos.</li>
+                        <li><strong>Comprometimento:</strong> Dedicação total à saúde, satisfação e confiança de nossos clientes.</li>
+                        <li><strong>Sustentabilidade:</strong> Consciência ambiental e social em nossas operações.</li>
+                    </ul>
+                </div>
+            </section>
+        </div>
+    </main>
+    
+    <div th:replace="~{base :: footer_fragment}"></div>
+
+    <script th:src="@{/js/main.js}"></script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Botões Estilizados</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif; /* Define uma fonte básica para a página */
+            display: flex; /* Centraliza o conteúdo */
+            justify-content: center; /* Centraliza horizontalmente */
+            align-items: center; /* Centraliza verticalmente */
+            min-height: 100vh; /* Ocupa a altura total da tela */
+            margin: 0;
+            background-color: #f4f4f4; /* Cor de fundo suave */
+        }
+
+        .menu-navegacao {
+            list-style: none; /* Remove os marcadores de lista padrão */
+            padding: 0;
+            margin: 0;
+            display: flex; /* Organiza os itens da lista em linha */
+            gap: 20px; /* Espaçamento entre os botões */
+        }
+
+        .menu-navegacao li {
+            /* Os itens da lista (<li>) em si não precisam de muito estilo de botão */
+        }
+
+        .menu-navegacao a {
+            display: block; /* Faz o link ocupar todo o espaço do <li> para ser um botão completo */
+            padding: 12px 25px; /* Espaçamento interno (altura e largura) */
+            background-color: #007bff; /* Cor de fundo azul para o botão */
+            color: white; /* Cor do texto */
+            text-decoration: none; /* Remove o sublinhado padrão dos links */
+            border-radius: 5px; /* Bordas levemente arredondadas */
+            transition: background-color 0.3s ease, transform 0.2s ease; /* Transição suave para o hover */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra sutil para profundidade */
+            font-weight: bold; /* Texto em negrito */
+            text-align: center; /* Centraliza o texto */
+        }
+
+        .menu-navegacao a:hover {
+            background-color: #0056b3; /* Cor mais escura no hover */
+            transform: translateY(-2px); /* Efeito de "levantar" no hover */
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15); /* Sombra um pouco maior no hover */
+        }
+
+        .menu-navegacao a:active {
+            background-color: #004085; /* Cor mais escura ao clicar */
+            transform: translateY(0); /* Volta à posição normal ao clicar */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra menor ao clicar */
+        }
+    </style>
+</head>
+<body>
+
+    <ul class="menu-navegacao">
+        <li title="Home"><a href="botoes_estilizados.html">Home</a></li>
+        <li title="Blog"><a href="blog.html">Blog</a></li>
+        <li title="About"><a href="about.html">About</a></li>
+    </ul>
+
+</body>
+</html>

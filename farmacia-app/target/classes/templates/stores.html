@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}Nossas Lojas - Farmácia Dias da Cruz{% endblock %}
+
+{% block content %}
+    <section class="page-header">
+        <h1>Nossas Unidades</h1>
+        <p>Encontre a Farmácia de Manipulação Dias da Cruz mais perto de você.</p>
+    </section>
+
+    <section class="content-section">
+        <div class="store-list">
+            <div class="store-item">
+                <h3>Unidade Centro</h3>
+                <p>Rua Principal, 456 - Centro</p>
+                <p>Cidade - UF, CEP: 98765-432</p>
+                <p><i class="fas fa-phone-alt"></i> (XX) YYYY-ZZZZ</p>
+                <p><i class="fas fa-clock"></i> Seg-Sex: 8h-19h | Sáb: 9h-14h</p>
+                <a href="https://www.google.com/maps/search/?api=1&query=Rua+Principal,+456,+Cidade" target="_blank" class="store-map-link">Ver no Mapa <i class="fas fa-map-marker-alt"></i></a>
+            </div>
+
+            <div class="store-item">
+                <h3>Unidade Zona Sul</h3>
+                <p>Avenida dos Bosques, 789 - Bela Vista</p>
+                <p>Cidade - UF, CEP: 11223-344</p>
+                <p><i class="fas fa-phone-alt"></i> (XX) AAAA-BBBB</p>
+                <p><i class="fas fa-clock"></i> Seg-Sex: 9h-18h | Sáb: 9h-13h</p>
+                <a href="https://www.google.com/maps/search/?api=1&query=Avenida+dos+Bosques,+789,+Cidade" target="_blank" class="store-map-link">Ver no Mapa <i class="fas fa-map-marker-alt"></i></a>
+            </div>
+
+            <div class="store-item">
+                <h3>Unidade Online (Central de Atendimento)</h3>
+                <p>Atendimento digital para todo o Brasil.</p>
+                <p><i class="fas fa-phone-alt"></i> (XX) XXXX-XXXX (WhatsApp)</p>
+                <p><i class="fas fa-envelope"></i> online@diasdacruz.com.br</p>
+                <p><i class="fas fa-clock"></i> Seg-Sex: 8h-18h</p>
+                <a href="{{ url_for('contact') }}" class="store-map-link">Fale Conosco Online <i class="fas fa-comment"></i></a>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block head_extra %}
+    <!-- Font Awesome já está em base.html, mas se for necessário um ícone muito específico, poderia vir aqui -->
+{% endblock %}

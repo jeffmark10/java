@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Início - Farmácia de Manipulação Dias da Cruz</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/components.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <main>
+        <header class="hero">
+            <div class="hero-content">
+                <h1>Farmácia de Manipulação Dias da Cruz</h1>
+                <p>Sua saúde e bem-estar, personalizados para você. Qualidade, precisão e cuidado em cada fórmula.</p>
+                <a th:href="@{/sobre}" class="btn">Nossa História</a>
+            </div>
+        </header>
+
+        <section class="featured-products" th:if="${!featured_products.isEmpty()}">
+            <div class="container">
+                <h2 class="section-title text-center">Nossos Produtos em Destaque</h2>
+                <div class="product-grid">
+                    <div class="col-md-4 mb-4" th:each="product : ${featured_products}">
+                        <div class="product-card card h-100 shadow-sm">
+                            <div class="product-image-container">
+                                <img th:src="@{'/images/' + ${product['image']}}" class="card-img-top product-image" th:alt="${product['name']}">
+                                <span class="product-badge" th:if="${product['badge'] != null}" th:text="${product['badge']}"></span>
+                            </div>
+                            <div class="card-body text-center">
+                                <h5 class="card-title product-name" th:text="${product['name']}">Nome do Produto</h5>
+                                <p class="card-text product-description" th:text="${product['description']}">Descrição</p>
+                                <p class="product-price" th:text="'R$ ' + ${#numbers.formatDecimal(product['price'], 1, 2, 'COMMA')}">R$ 0,00</p>
+                                <form th:action="@{/add_to_cart}" method="post" class="add-to-cart-form mt-auto">
+                                    <input type="hidden" name="product_id" th:value="${product['id']}">
+                                    <button type="submit" class="btn btn-success btn-block add-to-cart-btn">
+                                        <i class="fas fa-shopping-cart me-2"></i> Adicionar
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

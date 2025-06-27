@@ -1,0 +1,35 @@
+{# templates/category_overview.html #}
+{% extends 'base.html' %}
+
+{% block title %} {{ category_title }} - Farmácia de Manipulação Dias da Cruz{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ url_for('home') }}">Início</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{ category_title }}</li>
+        </ol>
+    </nav>
+
+    <h1 class="mb-4">{{ category_title }}</h1>
+
+    <div class="card p-4 shadow-sm">
+        <h2>Explore nossa categoria de {{ category_title }}</h2>
+        <p>Aqui você encontra uma vasta gama de produtos e soluções para todas as suas necessidades dentro desta área. Navegue pelos nossos subtópicos para encontrar informações detalhadas e produtos específicos.</p>
+        
+        <h3 class="mt-5 mb-3">Subtópicos em {{ category_title }}:</h3>
+        <ul class="list-group list-group-flush">
+            {% for subtopic_item in subtopics %}
+            <li class="list-group-item">
+                <a href="{{ url_for('dynamic_subtopic_page', category=category_key, subtopic=subtopic_item.key) }}">
+                    {{ subtopic_item.title }}
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    {# Você pode adicionar mais seções aqui, como produtos em destaque da categoria, etc. #}
+</div>
+{% endblock %}

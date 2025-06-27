@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block title %}{{ content_title }} - {{ SUBTOPIC_ROUTES_MAP[category].display_name }}{% endblock %}
+
+{% block content %}
+<div class="container page-container">
+    <!-- Breadcrumb de Navegação -->
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ url_for('home') }}">Início</a></li>
+            <li class="breadcrumb-item"><a href="{{ url_for('category_overview', category_name=category) }}">{{ SUBTOPIC_ROUTES_MAP[category].display_name }}</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{ content_title }}</li>
+        </ol>
+    </nav>
+
+    <!-- Bloco de Conteúdo Descritivo (AGORA DINÂMICO) -->
+    <div class="content-layout">
+        <div class="content-image-column">
+            <!-- A imagem agora é carregada dinamicamente -->
+            <img src="{{ url_for('static', filename='images/' + subtopic_details.get('image_filename', 'placeholder_default.jpg')) }}" 
+                 alt="{{ content_title }}" class="content-image">
+        </div>
+        <div class="content-text-column">
+            <h1 class="content-title-header">{{ content_title }}</h1>
+            <!-- A descrição agora é carregada dinamicamente (e renderiza HTML) -->
+            <div class="description-content">
+                {{ subtopic_details.get('description_html', '<p>Descrição para este tópico em breve.</p>') | safe }}
+            </div>
+        </div>
+    </div>
+
+    <!-- Divisor de Seção -->
+    <hr class="section-divider">
+
+    <!-- Seção de Produtos -->
+    <h2 class="section-title text-center">Produtos Relacionados</h2>
+    
+    {% if products %}
+        <div class="product-grid">
+            {% for product in products %}
+            <div class="product-card">
+                <!-- CÓDIGO DO CARD DE PRODUTO COMPLETO ADICIONADO AQUI -->
+                <div class="product-image-container">
+                    <img src="{{ url_for('static', filename='images/' + product.image if product.image else 'images/placeholder_product.jpg') }}" class="product-image" alt="{{ product.name }}">
+                    <div class="product-image-overlay">
+                        <a href="#" class="btn-overlay">Ver Detalhes</a>
+                    </div>
+                    {% if product.badge %}
+                        <span class="product-badge">{{ product.badge }}</span>
+                    {% endif %}
+                </div>
+                <div class="card-body">
+                    <h5 class="product-name">{{ product.name }}</h5>
+                    <p class="product-description">{{ product.description }}</p>
+                    <p class="product-price">R$ {{ "%.2f"|format(product.price) }}</p>
+                    <form action="{{ url_for('add_to_cart') }}" method="post" class="mt-auto">
+                       <input type="hidden" name="product_id" value="{{ product.id }}">
+                       <button type="submit" class="add-to-cart-btn">Adicionar</button>
+                    </form>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <!-- Mensagem de "nenhum produto" -->
+        <div class="empty-state-container text-center">
+            <i class="fas fa-box-open empty-state-icon"></i>
+            <h2>Nenhum produto encontrado</h2>
+            <p class="text-light-gray">
+                Ainda não adicionámos produtos a esta categoria.
+            </p>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
